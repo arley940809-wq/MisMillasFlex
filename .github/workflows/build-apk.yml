@@ -1,6 +1,8 @@
 # Construye el APK de Mis Millas Flex en GitHub (gratis, repositorio público).
 # Se ejecuta al cambiar cualquier archivo de android/ o este mismo archivo,
 # y también se puede lanzar a mano desde la pestaña Actions.
+# Además de guardarlo como artefacto, publica el APK en un Release (v1.0)
+# para poder descargarlo con un enlace directo, sin entrar a Actions.
 name: Build APK
 
 on:
@@ -13,6 +15,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Descargar el código
         uses: actions/checkout@v4
@@ -40,3 +44,10 @@ jobs:
         with:
           name: millas-flex-apk
           path: android/app/build/outputs/apk/debug/app-debug.apk
+
+      - name: Publicar el APK como release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v1.0
+          name: Mis Millas Flex v1.0
+          files: android/app/build/outputs/apk/debug/app-debug.apk
