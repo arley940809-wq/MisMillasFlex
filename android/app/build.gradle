@@ -1,0 +1,32 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.arley.millasflex'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.arley.millasflex"
+        minSdk 26
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    // GPS de Google: es lo que registra la ubicación en segundo plano.
+    implementation 'com.google.android.gms:play-services-location:21.0.1'
+}
